@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Discord IDs</title>
+  <style>
+    :root {
+      --bg: #0f0f13;
+      --card: #1a1a22;
+      --card-hover: #22222c;
+      --text: #e8e8ed;
+      --muted: #8b8b9a;
+      --accent: #5865f2;
+      --accent-hover: #4752c4;
+      --success: #23a559;
+      --border: #2a2a35;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 24px 16px 48px;
+      line-height: 1.5;
+    }
+
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    header h1 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
+    }
+
+    header p {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      transition: background 0.15s ease, border-color 0.15s ease;
+    }
+
+    .item:hover {
+      background: var(--card-hover);
+      border-color: #353545;
+    }
+
+    .info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+      flex: 1;
+    }
+
+    .name {
+      font-weight: 600;
+      font-size: 1.05rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .id {
+      font-family: "SF Mono", "Fira Code", "Cascadia Code", Consolas, monospace;
+      font-size: 0.8rem;
+      color: var(--muted);
+      word-break: break-all;
+    }
+
+    .copy-btn {
+      flex-shrink: 0;
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 16px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s ease, transform 0.1s ease;
+      min-width: 80px;
+      text-align: center;
+    }
+
+    .copy-btn:hover {
+      background: var(--accent-hover);
+    }
+
+    .copy-btn:active {
+      transform: scale(0.96);
+    }
+
+    .copy-btn.copied {
+      background: var(--success);
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 36px;
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+
+    /* Mobile */
+    @media (max-width: 480px) {
+      body {
+        padding: 16px 12px 40px;
+      }
+
+      header h1 {
+        font-size: 1.4rem;
+      }
+
+      .item {
+        padding: 12px 14px;
+        border-radius: 10px;
+      }
+
+      .name {
+        font-size: 1rem;
+      }
+
+      .id {
+        font-size: 0.75rem;
+      }
+
+      .copy-btn {
+        padding: 9px 12px;
+        font-size: 0.8rem;
+        min-width: 70px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Discord IDs</h1>
+      <p>Klicke auf „Kopieren“, um die ID in die Zwischenablage zu legen</p>
+    </header>
+
+    <div class="list" id="list">
+      <!-- Items werden per JS eingefügt -->
+    </div>
+
+    <footer>
+      Einfach auf GitHub Pages hosten
+    </footer>
+  </div>
+
+  <script>
+    const users = [
+      { name: "Tim", id: "1347939909654020116" },
+      { name: "Viktor", id: "1456317714506190901" },
+      { name: "Andrei", id: "1407390658330628128" },
+      { name: "Cupsize", id: "1514337244448817183" },
+      { name: "Holy", id: "1414162841447039108" },
+      { name: "Kabasko", id: "1266320359351914538" },
+      { name: "Leon", id: "1516534859223535650" },
+      { name: "Narniy", id: "1421741079568449651" },
+      { name: "Gutara", id: "1386774294272671786" },
+      { name: "Kacper", id: "1060236694667935764" },
+      { name: "Noel", id: "1421741079568449651" },
+      { name: "Roman", id: "1224262284856266833" },
+      { name: "Allina", id: "1514204065649791058" },
+      { name: "Artemie", id: "1442607950714634301" },
+      { name: "Gorilla", id: "1347981402465112185" },
+      { name: "Kokos", id: "661123666578505758" },
+      { name: "Meow", id: "1500866146436386856" },
+      { name: "Mininini", id: "1447199416900390982" },
+      { name: "Realone", id: "1471259641689145384" },
+      { name: "Rex", id: "1493605458571821106" },
+      { name: "Tobias", id: "805459217494048858" },
+      { name: "Twedlex", id: "992084980354273371" }
+    ];
+
+    const list = document.getElementById("list");
+
+    users.forEach(user => {
+      const item = document.createElement("div");
+      item.className = "item";
+
+      item.innerHTML = `
+        <div class="info">
+          <span class="name">${user.name}</span>
+          <span class="id">${user.id}</span>
+        </div>
+        <button class="copy-btn" data-id="${user.id}">Kopieren</button>
+      `;
+
+      list.appendChild(item);
+    });
+
+    list.addEventListener("click", async (e) => {
+      const btn = e.target.closest(".copy-btn");
+      if (!btn) return;
+
+      const id = btn.dataset.id;
+
+      try {
+        await navigator.clipboard.writeText(id);
+        const original = btn.textContent;
+        btn.textContent = "Kopiert!";
+        btn.classList.add("copied");
+
+        setTimeout(() => {
+          btn.textContent = original;
+          btn.classList.remove("copied");
+        }, 1500);
+      } catch (err) {
+        // Fallback für ältere Browser
+        const textarea = document.createElement("textarea");
+        textarea.value = id;
+        textarea.style.position = "fixed";
+        textarea.style.opacity = "0";
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textarea);
+
+        btn.textContent = "Kopiert!";
+        btn.classList.add("copied");
+        setTimeout(() => {
+          btn.textContent = "Kopieren";
+          btn.classList.remove("copied");
+        }, 1500);
+      }
+    });
+  </script>
+</body>
+</html>
